@@ -13,13 +13,31 @@
   <ion-card class="welcome-card" *ngFor="let products of prods">
     <img src="/assets/shapes.svg" alt="" />
     <ion-card-header>
-      <ion-card-title>{{products.title}}</ion-card-title>
+      <ion-card-title class="text-center title">{{products.title}}</ion-card-title>
       <ion-card-subtitle>{{products.price | currency: products.currencyId: true }}</ion-card-subtitle>
+      <ion-card-subtitle>{{products.style}}</ion-card-subtitle>
     </ion-card-header>
+
     <ion-card-content>
-      <p>Now that your app has been created, you'll want to start building out features and components. Check out some
-        of the resources below for next steps.</p>
+
+      <ion-item>
+        <ion-label>Tamanho</ion-label>
+        <ion-select placeholder="">
+          <ion-select-option *ngFor="let options of products.availableSizes" value="{{options}}">{{options}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
     </ion-card-content>
+
+    <!-- <ion-button color="primary" (click)="add(products)">Primary</ion-button> -->
+    <ion-toggle #toggle color="secondary" (ionChange)="updateTotalPrice(toggle.checked, products.price)"
+      (click)="addToCart(toggle.checked, products.id, products.title, products.description, products.price)">
+    </ion-toggle>
+
   </ion-card>
+
+  <ion-item-divider color="light">
+    <span item-right>Preço Total: R$ {{ totalPrice }}</span>
+  </ion-item-divider>
 
 </ion-content>
