@@ -1,0 +1,1 @@
+export const NETSHOES_API = 'http://localhost:3000';
