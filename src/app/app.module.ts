@@ -10,10 +10,9 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
-import { CardItemsComponent } from './card-items/card-items.component';
 
 @NgModule({
-  declarations: [AppComponent, CardItemsComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     IonicStorageModule.forRoot(),

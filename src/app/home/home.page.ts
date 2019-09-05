@@ -3,6 +3,7 @@ import { ProductsService } from "../products.service";
 import { ProductsItem } from "./products-item.model";
 import { EventEmitter } from "events";
 import { MenuController } from "@ionic/angular";
+import { ToastController } from "@ionic/angular";
 
 @Component({
   selector: "app-home",
@@ -20,7 +21,19 @@ export class HomePage implements OnInit {
   @Input() menuItem: ProductsItem;
   @Output() add2 = new EventEmitter();
 
-  constructor(private product: ProductsService, private menu: MenuController) {}
+  constructor(
+    private product: ProductsService,
+    private menu: MenuController,
+    public toastController: ToastController
+  ) {}
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: "Your settings have been saved.",
+      duration: 2000
+    });
+    toast.present();
+  }
 
   openFirst() {
     this.menu.enable(true, "first");
@@ -42,54 +55,52 @@ export class HomePage implements OnInit {
       .subscribe(res => ((<any>this.prods) = res), err => console.log(err));
   }
 
-  updateTotalPrice(price) {
-    this.totalPrice += price;
-  }
-
   getTotalPrice() {
     return this.totalPrice;
   }
-
-  addToCart(prods) {
-    this.updateTotalPrice(prods.price);
-    this.cart = prods;
-    console.log("aqui");
-
-    this.product.addToCart(this.cart);
-
-    this.product.getCart().then(
-      result => {
-        this.carro = result;
-      },
-      erro => {
-        console.log(erro);
-      }
-    );
-  }
-
-  clear(id) {
-    this.product.clearCart(id);
-  }
-
-  //NOT STORAGE
 
   items(): any[] {
     return this.product.items;
   }
 
-  addItem(item: any) {
-    this.product.addItem(item);
+  bad(): any[] {
+    return <any>this.product.bag.length;
   }
 
-  clear2() {
+  async addItem(item: any) {
+    this.product.addItem(item);
+    const toast = await this.toastController.create({
+      message: "Produto adicionado com sucesso.",
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  clear() {
     this.product.clear();
   }
 
-  removeItem(item: any) {
+  async removeItem(item: any) {
     this.product.removeItem(item);
+    const toast = await this.toastController.create({
+      message: "Item removido com sucesso.",
+      duration: 2000
+    });
+    toast.present();
   }
 
   total(): number {
     return this.product.total();
   }
+
+  promoc(): number {
+    return this.total() / 10;
+  }
+
+  // bagItemss(item: any) {
+  //   let items = this.product.bagItems(item);
+  //   console.log(items);
+
+  //   return this.product.bagItems(item);
+  // }
 }
