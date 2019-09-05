@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Output } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ProductsService } from "../products.service";
 import { ProductsItem } from "./products-item.model";
-import { EventEmitter } from "events";
 import { MenuController } from "@ionic/angular";
 import { ToastController } from "@ionic/angular";
 
@@ -12,14 +11,7 @@ import { ToastController } from "@ionic/angular";
 })
 export class HomePage implements OnInit {
   public prods: ProductsItem;
-  public sizes: any[] = [];
   public totalPrice: number = 0.0;
-  itemsInCart: Object[] = [];
-  cart: ProductsItem;
-  carro;
-
-  @Input() menuItem: ProductsItem;
-  @Output() add2 = new EventEmitter();
 
   constructor(
     private product: ProductsService,
@@ -55,8 +47,8 @@ export class HomePage implements OnInit {
       .subscribe(res => ((<any>this.prods) = res), err => console.log(err));
   }
 
-  getTotalPrice() {
-    return this.totalPrice;
+  select(dados) {
+    document.getElementById(`${dados.id}-comprar`).removeAttribute("disabled");
   }
 
   items(): any[] {
@@ -68,7 +60,13 @@ export class HomePage implements OnInit {
   }
 
   async addItem(item: any) {
+    let getSelect = (<HTMLInputElement>document.getElementById(item.id)).value;
+
+    item.availableSizes = [];
+    item.availableSizes.push(getSelect);
+
     this.product.addItem(item);
+
     const toast = await this.toastController.create({
       message: "Produto adicionado com sucesso.",
       duration: 2000
@@ -96,11 +94,4 @@ export class HomePage implements OnInit {
   promoc(): number {
     return this.total() / 10;
   }
-
-  // bagItemss(item: any) {
-  //   let items = this.product.bagItems(item);
-  //   console.log(items);
-
-  //   return this.product.bagItems(item);
-  // }
 }

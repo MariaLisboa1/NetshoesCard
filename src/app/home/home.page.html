@@ -1,10 +1,13 @@
-<ion-menu side="start" menuId="first">
+<ion-menu side="start" menuId="first" class="ion-padding">
   <ion-header>
     <ion-toolbar color="dark">
       <ion-title class="title-card-menu">
 
-        <ion-icon name="cart"></ion-icon>
-        <ion-badge color="warning">{{bad()}}</ion-badge> Sacola
+        <span class="badge-icon">
+          <ion-icon name="cart"></ion-icon>
+          <ion-badge color="warning" class="badge">{{bad()}}</ion-badge>
+        </span>
+        Sacola
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -20,30 +23,51 @@
 
       <div *ngIf="items().length">
         <ion-item *ngFor="let item of items()">
-          <ion-label>
-            <span>{{item.menuItem.title}}</span>
-            <p>{{item.menuItem.style}}</p>
-            <p>Quantidade: {{item.quantity}}</p>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="10">
+                <span>{{item.menuItem.title}}</span>
+              </ion-col>
+              <ion-col size="2">
+                <a (click)="removeItem(item)" class="btn btn-sm danger icon close-item">
+                  <ion-icon name="close"></ion-icon>
+                </a>
+              </ion-col>
+              <ion-col size="12" class="style">
+                <p>{{item.menuItem.availableSizes}} | {{item.menuItem.style}}</p>
+              </ion-col>
+              <ion-col size="6" class="quantify">
+                <span>Quantidade: {{item.quantity}}</span>
+              </ion-col>
+              <ion-col size="6">
+                <span class="price">{{item.value() | currency:
+                      item.menuItem.currencyId: true}}</span>
+              </ion-col>
+            </ion-row>
 
-            <p class="price">{{item.value() | currency:
-              item.menuItem.currencyId: true}}</p>
-            <a (click)="removeItem(item)" class="btn btn-sm danger icon">
-              <ion-icon name="close"></ion-icon>
-            </a>
-
-          </ion-label>
-
+          </ion-grid>
         </ion-item>
       </div>
 
       <ion-item>
-        <ion-label>
-          SUBTOTAL: {{total() | currency: 'BRL': true}}
-          <p>ou em até 10x de {{promoc() | currency: 'BRL': true}}</p>
+        <ion-label *ngIf="items().length">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                SUBTOTAL:
+              </ion-col>
+              <ion-col size="6">
+                <p class="total">{{total() | currency: 'BRL': true}}</p>
+              </ion-col>
+              <ion-col>
+                <span class="prom">ou em até 10x de {{promoc() | currency: 'BRL': true}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-label>
       </ion-item>
 
-      <ion-button *ngIf="items().length" color="dark" expand="full">COMPRAR</ion-button>
+      <ion-button *ngIf="items().length" color="warning" expand="full">COMPRAR</ion-button>
     </ion-list>
 
   </ion-content>
@@ -61,29 +85,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <!-- <mat-icon matBadge="9" matBadgePosition="before" matBadgeColor="warn">notification_important</mat-icon> -->
+
   <ion-card class="welcome-card" *ngFor="let products of prods">
     <img src="https://static.netshoes.com.br/produtos/26/HZM-1596-026/HZM-1596-026_detalhe1.jpg?ims=280x280" alt="" />
     <ion-card-header>
-      <ion-card-title class="text-center title">{{products.title}}</ion-card-title>
-      <ion-card-subtitle>{{products.price | currency: products.currencyId: true
-        }}</ion-card-subtitle>
-      <ion-card-subtitle>{{products.style}}</ion-card-subtitle>
+      <ion-card-title class="title">{{products.title}}</ion-card-title>
+
+      <p class="price-item">{{products.price | currency: products.currencyId: true }}</p>
+      <p class="promo-item" *ngIf="products.installments > 0 ">OU {{products.installments}}x
+        {{products.price / products.installments | currency: products.currencyId: true}}
+      </p>
+
+      <ion-card-subtitle class="product-style">{{products.style}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-
       <ion-item>
-        <ion-label>Tamanho</ion-label>
-        <ion-select placeholder="">
-          <ion-select-option *ngFor="let options of products.availableSizes" value="{{options}}">{{options}}
+        <ion-label>Escolher tamanho</ion-label>
+        <ion-select (ionChange)="select(products)" placeholder="" id="{{products.id}}">
+          <ion-select-option *ngFor="let options of products.availableSizes" value="{{options}}">
+            {{options}}
           </ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
 
-    <ion-button color="primary" expand="full" (click)="addItem(products)">
-      Adicionar
+    <ion-button disabled="disabled" color="warning" id="{{products.id}}-comprar" expand="block"
+      (click)="addItem(products)">
+      Adicionar no Carrinho
     </ion-button>
 
   </ion-card>
