@@ -1,5 +1,7 @@
 {
   "name": "Netshoes_Card_App",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

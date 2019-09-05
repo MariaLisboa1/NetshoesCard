@@ -4,6 +4,7 @@ import { ProductsItem } from "./home/products-item.model";
 import { CartItem } from "./home/cart-item.model";
 import { NETSHOES_API } from "./app.api";
 import { BagItem } from "./home/bag-item.model";
+import { Storage } from "@ionic/storage";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +14,7 @@ export class ProductsService {
   items: CartItem[] = [];
   bag: BagItem[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private storage: Storage) {}
 
   clear() {
     this.items = [];
@@ -28,7 +29,13 @@ export class ProductsService {
       this.items.push(new CartItem(item));
     }
     console.log(`Você adicionou o item ${item.title}`);
+    // this.storage.set("prods", this.items);
   }
+
+  // addToCart(item: any): Promise<any> {
+  //   this.items.push(item);
+  //   return this.storage.set("prods", this.items);
+  // }
 
   increaseQty(item: CartItem) {
     item.quantity = item.quantity + 1;

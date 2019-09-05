@@ -15,14 +15,14 @@
   <ion-content>
 
     <ion-list color="dark">
-      <div *ngIf="!items().length">
+      <div *ngIf="!items(a).length">
         <p class="message-empty">
           Seu carrinho está vazio!
         </p>
       </div>
 
-      <div *ngIf="items().length">
-        <ion-item *ngFor="let item of items()">
+      <div *ngIf="items(a).length">
+        <ion-item *ngFor="let item of items(a)">
           <ion-grid>
             <ion-row>
               <ion-col size="10">

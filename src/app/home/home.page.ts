@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductsService } from "../products.service";
 import { ProductsItem } from "./products-item.model";
-import { MenuController } from "@ionic/angular";
+import { MenuController, AlertController } from "@ionic/angular";
 import { ToastController } from "@ionic/angular";
 
 @Component({
@@ -12,12 +12,25 @@ import { ToastController } from "@ionic/angular";
 export class HomePage implements OnInit {
   public prods: ProductsItem;
   public totalPrice: number = 0.0;
+  cart;
 
   constructor(
     private product: ProductsService,
     private menu: MenuController,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public alertController: AlertController
   ) {}
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: "Alert",
+      subHeader: "Subtitle",
+      message: "This is an alert message.",
+      buttons: ["OK"]
+    });
+
+    await alert.present();
+  }
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -44,7 +57,15 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.product
       .products()
-      .subscribe(res => ((<any>this.prods) = res), err => console.log(err));
+      .subscribe(res => ((<any>this.prods) = res), err => this.presentAlert());
+
+    this.cart = JSON.parse(localStorage.getItem("prods"));
+    // if (this.cart) {
+    //   this.items(this.cart);
+    // } else {
+    //   this.items([]);
+    // }
+    // this.items([]);
   }
 
   select(dados) {
@@ -52,7 +73,14 @@ export class HomePage implements OnInit {
   }
 
   items(): any[] {
+    localStorage.setItem("prods", JSON.stringify(this.product.items));
     return this.product.items;
+  }
+
+  items1(cart): any[] {
+    console.log(cart);
+
+    return cart;
   }
 
   bad(): any[] {
@@ -60,12 +88,19 @@ export class HomePage implements OnInit {
   }
 
   async addItem(item: any) {
-    let getSelect = (<HTMLInputElement>document.getElementById(item.id)).value;
+    // let getSelect = (<HTMLInputElement>document.getElementById(item.id)).value;
+    // this.cart = item;
+    // console.log(this.product.addToCart(this.cart));
 
-    item.availableSizes = [];
-    item.availableSizes.push(getSelect);
+    // item.availableSizes = [];
+    // item.availableSizes.push(getSelect);
 
     this.product.addItem(item);
+    // console.log(this.product.addItem(item));
+
+    // this.cart.push(item);
+
+    // localStorage.setItem("products", this.cart);
 
     const toast = await this.toastController.create({
       message: "Produto adicionado com sucesso.",
