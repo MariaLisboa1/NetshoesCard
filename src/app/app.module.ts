@@ -9,20 +9,24 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
+import { IonicStorageModule } from '@ionic/storage';
+import { CardItemsComponent } from './card-items/card-items.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CardItemsComponent],
   entryComponents: [],
   imports: [
+    IonicStorageModule.forRoot(),
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+   
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, Storage
   ],
   bootstrap: [AppComponent]
 })

@@ -1,20 +1,72 @@
+<ion-menu side="start" menuId="first">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Sacola</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+    <ion-list color="primary">
+      <div *ngIf="!items().length">
+        <p class="text-center">
+          Seu carrinho está vazio!
+        </p>
+      </div>
+
+      <div *ngIf="items().length">
+        <ion-item *ngFor="let item of items()">
+          <ion-label>
+            <!-- <ion-icon name="close"></ion-icon> -->
+            <span>{{item.menuItem.title}}</span>
+            <p>{{item.menuItem.style}}</p>
+            <p>Quantidade: {{item.quantity}}</p>
+
+            <p class="price">{{item.value() | currency:
+              item.menuItem.currencyId: true}}</p>
+            <a (click)="removeItem(item)" class="btn btn-sm danger icon"><ion-icon
+                name="close"></ion-icon></a>
+
+            <!-- <p>{{dados.style}}</p> -->
+            <!-- <p class="price">{{dados.price | currency: dados.currencyId: true}}</p> -->
+          </ion-label>
+
+        </ion-item>
+      </div>
+
+      <ion-item>
+        <ion-label>
+          SUBTOTAL: {{totalPrice}}
+        </ion-label>
+
+      </ion-item>
+      <ion-button color="dark" expand="full">COMPRAR</ion-button>
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+<ion-router-outlet main></ion-router-outlet>
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      Inicio
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card class="welcome-card" *ngFor="let products of prods">
-    <img src="/assets/shapes.svg" alt="" />
+    <img
+      src="https://static.netshoes.com.br/produtos/26/HZM-1596-026/HZM-1596-026_detalhe1.jpg?ims=280x280"
+      alt="" />
     <ion-card-header>
       <ion-card-title class="text-center title">{{products.title}}</ion-card-title>
-      <ion-card-subtitle>{{products.price | currency: products.currencyId: true }}</ion-card-subtitle>
+      <ion-card-subtitle>{{products.price | currency: products.currencyId: true
+        }}</ion-card-subtitle>
       <ion-card-subtitle>{{products.style}}</ion-card-subtitle>
     </ion-card-header>
 
@@ -23,21 +75,17 @@
       <ion-item>
         <ion-label>Tamanho</ion-label>
         <ion-select placeholder="">
-          <ion-select-option *ngFor="let options of products.availableSizes" value="{{options}}">{{options}}
+          <ion-select-option *ngFor="let options of products.availableSizes"
+            value="{{options}}">{{options}}
           </ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
 
-    <!-- <ion-button color="primary" (click)="add(products)">Primary</ion-button> -->
-    <ion-toggle #toggle color="secondary" (ionChange)="updateTotalPrice(toggle.checked, products.price)"
-      (click)="addToCart(toggle.checked, products.id, products.title, products.description, products.price)">
-    </ion-toggle>
-
+    <ion-button color="primary" expand="full"
+      (click)="addItem(products)">
+      Adicionar
+    </ion-button>
   </ion-card>
-
-  <ion-item-divider color="light">
-    <span item-right>Preço Total: R$ {{ totalPrice }}</span>
-  </ion-item-divider>
 
 </ion-content>
