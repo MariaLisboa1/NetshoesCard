@@ -8,11 +8,10 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from "@ionic/storage";
-
+import { CoreModule } from "./core/core.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatButtonModule, MatCheckboxModule } from "@angular/material";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +21,10 @@ import { MatButtonModule, MatCheckboxModule } from "@angular/material";
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
+    CoreModule,
+    CommonModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule
+    BrowserModule
   ],
   providers: [
     StatusBar,

@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { ProductsItem } from "./home/products-item.model";
-import { CartItem } from "./home/cart-item.model";
-import { NETSHOES_API } from "./app.api";
-import { BagItem } from "./home/bag-item.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Storage } from "@ionic/storage";
+import { Observable } from "rxjs";
+
+import { ProductsItem } from "../models/products-item.model";
+import { NETSHOES_API } from "../../app.api";
+import { CartItem } from "../models/cart-item.model";
+import { BagItem } from "../models/bag-item.model";
 
 @Injectable({
   providedIn: "root"
@@ -39,6 +41,19 @@ export class ProductsService {
 
   increaseQty(item: CartItem) {
     item.quantity = item.quantity + 1;
+  }
+
+  addApi(item) {
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    let options = {
+      headers: headers
+    };
+
+    this.http.post(`${NETSHOES_API}/cart2`, item, options).subscribe(data => {
+      console.log(data);
+    });
   }
 
   decreaseQty(item: CartItem) {

@@ -7,7 +7,6 @@ import { HomePage } from "./home.page";
 
 import { MatSelectModule } from "@angular/material/select";
 import { MatBadgeModule, MatIconModule } from "@angular/material";
-
 @NgModule({
   imports: [
     CommonModule,
