@@ -9,6 +9,7 @@ import { ProductsService } from "../../services/products.service";
 })
 export class MenuComponent implements OnInit {
   cart;
+  title: string = "Comprar";
 
   constructor(
     private menu: MenuController,
@@ -17,11 +18,10 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(JSON.parse(localStorage.getItem("products")));
-
-    if (JSON.parse(localStorage.getItem("products"))) {
-      // this.product.items = JSON.parse(localStorage.getItem("products"));
-    }
+    // console.log(JSON.parse(localStorage.getItem("products")));
+    // if (JSON.parse(localStorage.getItem("products"))) {
+    // this.product.items = JSON.parse(localStorage.getItem("products"));
+    // }
   }
 
   openFirst() {
@@ -68,5 +68,13 @@ export class MenuComponent implements OnInit {
 
   promoc(): number {
     return this.total() / 10;
+  }
+
+  async add() {
+    const toast = await this.toastController.create({
+      message: "Compra finalizada com sucesso.",
+      duration: 2000
+    });
+    toast.present();
   }
 }

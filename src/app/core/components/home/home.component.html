@@ -1,6 +1,4 @@
 <app-menu></app-menu>
-<!-- <ion-router-outlet main></ion-router-outlet> -->
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -14,34 +12,10 @@
 
 <ion-content class="ion-padding">
   <ion-card class="welcome-card" *ngFor="let products of prods">
-    <app-home-items [products]="products"></app-home-items>
+    <app-home-items [products]="products" (select)="select($event)"></app-home-items>
 
-    <ion-card-content>
-      <ion-item>
-        <ion-label>Escolher tamanho</ion-label>
-        <ion-select
-          (ionChange)="select(products)"
-          placeholder=""
-          id="{{ products.id }}"
-        >
-          <ion-select-option
-            *ngFor="let options of products.availableSizes"
-            value="{{ options }}"
-          >
-            {{ options }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-card-content>
+    <app-button [products]="products" [title]="title" (add)="add($event)"></app-button>
 
-    <ion-button
-      disabled="disabled"
-      color="warning"
-      id="{{ products.id }}-comprar"
-      expand="block"
-      (click)="addItem(products)"
-    >
-      Adicionar no Carrinho
-    </ion-button>
+
   </ion-card>
 </ion-content>

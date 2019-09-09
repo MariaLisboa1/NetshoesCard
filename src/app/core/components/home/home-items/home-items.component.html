@@ -1,7 +1,4 @@
-<img
-  src="https://static.netshoes.com.br/produtos/26/HZM-1596-026/HZM-1596-026_detalhe1.jpg?ims=280x280"
-  alt=""
-/>
+<img src="https://static.netshoes.com.br/produtos/26/HZM-1596-026/HZM-1596-026_detalhe1.jpg?ims=280x280" alt="" />
 <ion-card-header>
   <ion-card-title class="title">{{ products.title }}</ion-card-title>
 
@@ -19,4 +16,23 @@
   <ion-card-subtitle class="product-style">{{
     products.style
   }}</ion-card-subtitle>
+
+  <ion-card-content>
+    <ion-item>
+      <ion-label>Escolher tamanho</ion-label>
+      <ion-select (ionChange)="emitSelect(products)" placeholder="" id="{{ products.id }}">
+        <ion-select-option *ngFor="let options of products.availableSizes" value="{{ options }}">
+          {{ options }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card-content>
+
+  <!-- <ion-button disabled="disabled" color="warning" id="{{ products.id }}-comprar" expand="block"
+    (click)="emitAdd(products)">
+    Adicionar no Carrinho
+  </ion-button> -->
+
+
+
 </ion-card-header>

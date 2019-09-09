@@ -6,6 +6,8 @@ import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
 import { MenuComponent } from "./components/menu/menu.component";
 import { CartItemsComponent } from "./components/menu/cart-items/cart-items.component";
+import { HomeItemsComponent } from "./components/home/home-items/home-items.component";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -13,6 +15,7 @@ import { CartItemsComponent } from "./components/menu/cart-items/cart-items.comp
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: "",
@@ -24,13 +27,12 @@ import { CartItemsComponent } from "./components/menu/cart-items/cart-items.comp
       }
     ])
   ],
-  declarations: [MenuComponent, CartItemsComponent],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule,
-    MenuComponent
-  ]
+  declarations: [
+    MenuComponent,
+    CartItemsComponent,
+    HomeComponent,
+    HomeItemsComponent
+  ],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule, IonicModule]
 })
 export class CoreModule {}

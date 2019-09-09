@@ -1,3 +1,4 @@
-<ion-button *ngIf="items().length" color="warning" expand="full"
-        >COMPRAR</ion-button
-      >
+<ion-button disabled="{{ products ? disabled : 'false' }}" color="warning"
+  id="{{ products ? products.id : '' }}-comprar" expand="block" (click)="emitAdd(products)">
+  {{title}}
+</ion-button>

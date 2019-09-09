@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { CartItem } from "src/app/core/models/cart-item.model";
-// import { EventEmitter } from "events";
 
 @Component({
   selector: "app-cart-items",
@@ -9,11 +7,7 @@ import { CartItem } from "src/app/core/models/cart-item.model";
 })
 export class CartItemsComponent implements OnInit {
   @Input() item;
-  // @Input() availableSizes;
   @Output() removeItem = new EventEmitter();
-  // @Input() quantity;
-  // @Output() value = new EventEmitter<CartItem>();
-  // @Input() currencyId;
 
   constructor() {}
 
