@@ -20,6 +20,6 @@
 
 `npm install -g json-server`
 
-### Iniciando o serviço (raiz da aplicação)
+### Iniciando o serviço
 
 `json-server src/public/data/products.json`
