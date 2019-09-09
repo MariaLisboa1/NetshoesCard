@@ -2,15 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CoreModule } from "../../core.module";
 import { HomeComponent } from "./home.component";
-import { CommonModule } from "@angular/common";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HomeItemsComponent } from "./home-items/home-items.component";
 @NgModule({
   imports: [
     CoreModule,
-    CommonModule,
-    BrowserAnimationsModule,
-    BrowserModule,
     RouterModule.forChild([
       {
         path: "",
@@ -18,6 +13,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       }
     ])
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, HomeItemsComponent]
 })
 export class HomeComponentModule {}

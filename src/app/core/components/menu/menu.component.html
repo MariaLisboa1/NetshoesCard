@@ -1,0 +1,57 @@
+<ion-menu side="start" menuId="first" class="ion-padding">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-title class="title-card-menu">
+        <span class="badge-icon">
+          <ion-icon name="cart"></ion-icon>
+          <ion-badge color="warning" class="badge">{{ badge() }}</ion-badge>
+        </span>
+        Sacola
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list color="dark">
+      <div *ngIf="!items(a).length">
+        <p class="message-empty">
+          Seu carrinho está vazio!
+        </p>
+      </div>
+
+      <div *ngIf="items().length">
+        <ion-item *ngFor="let item of items()">
+          <app-cart-items
+            [item]="item"
+            (removeItem)="removeItem($event)"
+          ></app-cart-items>
+        </ion-item>
+      </div>
+
+      <ion-item>
+        <ion-label *ngIf="items().length">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                SUBTOTAL:
+              </ion-col>
+              <ion-col size="6">
+                <p class="total">{{ total() | currency: "BRL":true }}</p>
+              </ion-col>
+              <ion-col>
+                <span class="prom"
+                  >ou em até 10x de {{ promoc() | currency: "BRL":true }}</span
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-label>
+      </ion-item>
+
+      <ion-button *ngIf="items().length" color="warning" expand="full"
+        >COMPRAR</ion-button
+      >
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet main></ion-router-outlet>

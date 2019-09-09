@@ -1,0 +1,22 @@
+<img
+  src="https://static.netshoes.com.br/produtos/26/HZM-1596-026/HZM-1596-026_detalhe1.jpg?ims=280x280"
+  alt=""
+/>
+<ion-card-header>
+  <ion-card-title class="title">{{ products.title }}</ion-card-title>
+
+  <p class="price-item">
+    {{ products.price | currency: products.currencyId:true }}
+  </p>
+  <p class="promo-item" *ngIf="products.installments > 0">
+    OU {{ products.installments }}x
+    {{
+      products.price / products.installments
+        | currency: products.currencyId:true
+    }}
+  </p>
+
+  <ion-card-subtitle class="product-style">{{
+    products.style
+  }}</ion-card-subtitle>
+</ion-card-header>

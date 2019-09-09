@@ -1,27 +1,36 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
-// import { RouterModule } from "@angular/router";
-// import { HomeComponent } from "./components/home/home.component";
-import { HttpClientModule } from "@angular/common/http";
-import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule } from "@angular/router";
+import { HomeComponent } from "./components/home/home.component";
+import { MenuComponent } from "./components/menu/menu.component";
+import { CartItemsComponent } from "./components/menu/cart-items/cart-items.component";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
-    HttpClientModule,
-    BrowserModule
-    // RouterModule.forChild([
-    //   {
-    //     path: "",
-    //     component: HomeComponent
-    //   }
-    // ])
+    RouterModule.forChild([
+      {
+        path: "",
+        component: HomeComponent
+      },
+      {
+        path: "menu",
+        component: MenuComponent
+      }
+    ])
   ],
-  declarations: [],
-  exports: []
+  declarations: [MenuComponent, CartItemsComponent],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    MenuComponent
+  ]
 })
 export class CoreModule {}

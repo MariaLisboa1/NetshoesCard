@@ -9,23 +9,19 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { IonicStorageModule } from "@ionic/storage";
-import { CoreModule } from "./core/core.module";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    HttpClientModule,
     IonicStorageModule.forRoot(),
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule,
-    CoreModule,
-    CommonModule,
-    BrowserAnimationsModule,
-    BrowserModule
+    AppRoutingModule
   ],
+  exports: [],
   providers: [
     StatusBar,
     SplashScreen,
