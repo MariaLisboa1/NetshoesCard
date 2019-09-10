@@ -36,14 +36,14 @@
                 <p class="total">{{ total() | currency: "BRL":true }}</p>
               </ion-col>
               <ion-col>
-                <span class="prom">ou em até 10x de {{ promoc() | currency: "BRL":true }}</span>
+                <span class="prom">ou em até 10x de {{ promoc() | currency:
+                  "BRL":true }}</span>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-label>
       </ion-item>
 
-      <!-- <ion-button *ngIf="items().length" color="warning" (click)="comra()" expand="full">COMPRAR</ion-button> -->
       <app-button (add)="add($event)" [title]="title"></app-button>
 
     </ion-list>
