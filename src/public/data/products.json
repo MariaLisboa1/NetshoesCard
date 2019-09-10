@@ -323,6 +323,156 @@
       "currencyId": "BRL",
       "currencyFormat": "R$",
       "isFreeShipping": true
+    },
+    {
+      "id": 7,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 8,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 9,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 10,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 11,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 12,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 13,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 14,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 15,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
+    },
+    {
+      "id": 16,
+      "sku": 8552515751438644,
+      "title": "Camisa Nike Corinthians I",
+      "description": "14/15 s/nº",
+      "availableSizes": [
+        "GGG"
+      ],
+      "style": "Branco com listras pretas",
+      "price": 229.9,
+      "installments": 9,
+      "currencyId": "BRL",
+      "currencyFormat": "R$",
+      "isFreeShipping": true
     }
   ]
 }

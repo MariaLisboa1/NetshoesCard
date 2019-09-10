@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuController, ToastController } from "@ionic/angular";
 import { ProductsService } from "../../services/products.service";
+import { CartItem } from "../../models/cart-item.model";
 
 @Component({
   selector: "app-menu",
@@ -10,6 +11,7 @@ import { ProductsService } from "../../services/products.service";
 export class MenuComponent implements OnInit {
   cart;
   title: string = "Comprar";
+  cartItems;
 
   constructor(
     private menu: MenuController,
@@ -17,7 +19,17 @@ export class MenuComponent implements OnInit {
     public toastController: ToastController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // let get = JSON.parse(localStorage.getItem("items"));
+    // if (get) {
+    //   this.cartItems = get;
+    // } else {
+    //   this.cartItems = [];
+    // }
+    this.cartItems = JSON.parse(localStorage.getItem("items"));
+
+    console.log(this.cartItems);
+  }
 
   openFirst() {
     this.menu.enable(true, "first");
@@ -37,12 +49,13 @@ export class MenuComponent implements OnInit {
     return <any>this.product.bag.length;
   }
 
-  items(): any[] {
-    return this.product.items;
+  items() {
+    // return this.product.items;
+    return this.cartItems;
   }
 
   clear() {
-    localStorage.removeItem("products");
+    // localStorage.removeItem("products");
     this.product.clear();
   }
 

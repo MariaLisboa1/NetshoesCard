@@ -19,8 +19,7 @@ export class ProductsService {
     this.items = [];
   }
 
-  addItem(item: ProductsItem) {
-    this.bag.push(new BagItem(item));
+  async addItem(item: ProductsItem) {
     let foundItem = this.items.find(mItem => mItem.menuItem.id === item.id);
     if (foundItem) {
       this.increaseQty(foundItem);
@@ -28,6 +27,10 @@ export class ProductsService {
       this.items.push(new CartItem(item));
     }
     console.log(`Você adicionou o item ${item.title}`);
+
+    localStorage.setItem("items", JSON.stringify(this.items));
+
+    this.bag.push(new BagItem(item));
   }
 
   increaseQty(item: CartItem) {
@@ -54,9 +57,5 @@ export class ProductsService {
 
   products() {
     return this.http.get(`${NETSHOES_API}/products`);
-  }
-
-  addBd(item: ProductsItem) {
-    return this.http.post(`${NETSHOES_API}/cart`, item);
   }
 }
