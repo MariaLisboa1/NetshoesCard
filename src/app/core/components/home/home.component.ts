@@ -12,9 +12,7 @@ import { ProductsService } from "../../services/products.service";
 })
 export class HomeComponent implements OnInit {
   public prods: ProductsItem;
-  public totalPrice: number = 0.0;
   cart;
-  cartItems;
   title: string = "Adicionar no Carrinho";
 
   constructor(

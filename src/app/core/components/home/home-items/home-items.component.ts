@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { ProductsItem } from "src/app/core/models/products-item.model";
 
 @Component({
   selector: "app-home-items",
@@ -7,7 +6,6 @@ import { ProductsItem } from "src/app/core/models/products-item.model";
   styleUrls: ["./home-items.component.scss"]
 })
 export class HomeItemsComponent implements OnInit {
-  public prods: ProductsItem;
   @Input() products;
 
   @Output() select = new EventEmitter();
@@ -16,7 +14,7 @@ export class HomeItemsComponent implements OnInit {
 
   ngOnInit() {}
 
-  emitSelect(dados) {
-    this.select.emit(dados);
+  emitSelect(data) {
+    this.select.emit(data);
   }
 }

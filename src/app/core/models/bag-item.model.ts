@@ -4,10 +4,10 @@ export class BagItem {
   constructor(
     public menuItem: ProductsItem,
     public quantity: number = 0,
-    public bagIems: number = 0
+    public bagItems: number = 0
   ) {}
 
   value(): number {
-    return this.bagIems + this.quantity;
+    return this.bagItems + this.quantity;
   }
 }

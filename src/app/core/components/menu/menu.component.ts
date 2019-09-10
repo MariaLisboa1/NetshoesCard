@@ -20,15 +20,7 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // let get = JSON.parse(localStorage.getItem("items"));
-    // if (get) {
-    //   this.cartItems = get;
-    // } else {
-    //   this.cartItems = [];
-    // }
-    this.cartItems = JSON.parse(localStorage.getItem("items"));
 
-    console.log(this.cartItems);
   }
 
   openFirst() {
@@ -46,30 +38,43 @@ export class MenuComponent implements OnInit {
   }
 
   badge(): any[] {
-    return <any>this.product.bag.length;
+    let getBadge = JSON.parse(localStorage.getItem("badge"));
+
+    if (getBadge) {
+      return getBadge.length;
+    } else {
+      getBadge = 0;
+      return getBadge;
+    }
   }
 
   items() {
-    // return this.product.items;
+    let getItems = JSON.parse(localStorage.getItem("items"));
+
+    if (getItems) {
+      this.cartItems = getItems;
+    } else {
+      this.cartItems = [];
+    }
     return this.cartItems;
   }
 
   clear() {
-    // localStorage.removeItem("products");
     this.product.clear();
   }
 
   async removeItem(item: any) {
-    this.product.removeItem(item);
+    this.product.decreaseQty(item);
 
     const toast = await this.toastController.create({
       message: "Item removido com sucesso.",
       duration: 2000
     });
     toast.present();
+    this.items();
   }
 
-  total(): number {
+  total(): any {
     return this.product.total();
   }
 
@@ -83,5 +88,7 @@ export class MenuComponent implements OnInit {
       duration: 2000
     });
     toast.present();
+
+    this.clear();
   }
 }

@@ -20,10 +20,6 @@ import { SharedModule } from "../shared/shared.module";
       {
         path: "",
         component: HomeComponent
-      },
-      {
-        path: "menu",
-        component: MenuComponent
       }
     ])
   ],
