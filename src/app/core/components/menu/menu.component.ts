@@ -17,12 +17,7 @@ export class MenuComponent implements OnInit {
     public toastController: ToastController
   ) {}
 
-  ngOnInit() {
-    // console.log(JSON.parse(localStorage.getItem("products")));
-    // if (JSON.parse(localStorage.getItem("products"))) {
-    // this.product.items = JSON.parse(localStorage.getItem("products"));
-    // }
-  }
+  ngOnInit() {}
 
   openFirst() {
     this.menu.enable(true, "first");
@@ -43,7 +38,6 @@ export class MenuComponent implements OnInit {
   }
 
   items(): any[] {
-    // localStorage.setItem("prods", JSON.stringify(this.product.items));
     return this.product.items;
   }
 

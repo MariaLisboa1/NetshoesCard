@@ -1,8 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Storage } from "@ionic/storage";
-import { Observable } from "rxjs";
-
+import { HttpClient } from "@angular/common/http";
 import { ProductsItem } from "../models/products-item.model";
 import { NETSHOES_API } from "../../app.api";
 import { CartItem } from "../models/cart-item.model";
@@ -16,7 +13,7 @@ export class ProductsService {
   items: CartItem[] = [];
   bag: BagItem[] = [];
 
-  constructor(private http: HttpClient, private storage: Storage) {}
+  constructor(private http: HttpClient) {}
 
   clear() {
     this.items = [];
@@ -31,29 +28,10 @@ export class ProductsService {
       this.items.push(new CartItem(item));
     }
     console.log(`Você adicionou o item ${item.title}`);
-    // this.storage.set("prods", this.items);
   }
-
-  // addToCart(item: any): Promise<any> {
-  //   this.items.push(item);
-  //   return this.storage.set("prods", this.items);
-  // }
 
   increaseQty(item: CartItem) {
     item.quantity = item.quantity + 1;
-  }
-
-  addApi(item) {
-    let headers = new HttpHeaders({
-      "Content-Type": "application/json"
-    });
-    let options = {
-      headers: headers
-    };
-
-    this.http.post(`${NETSHOES_API}/cart2`, item, options).subscribe(data => {
-      console.log(data);
-    });
   }
 
   decreaseQty(item: CartItem) {
@@ -76,5 +54,9 @@ export class ProductsService {
 
   products() {
     return this.http.get(`${NETSHOES_API}/products`);
+  }
+
+  addBd(item: ProductsItem) {
+    return this.http.post(`${NETSHOES_API}/cart`, item);
   }
 }

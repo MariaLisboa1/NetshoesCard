@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   public prods: ProductsItem;
   public totalPrice: number = 0.0;
   cart;
+  cartItems;
   title: string = "Adicionar no Carrinho";
 
   constructor(
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     item.availableSizes = [];
     item.availableSizes.push(getSelect);
     this.product.addItem(item);
+    this.addBd(item);
     // localStorage.setItem("products", JSON.stringify(this.cart));
     // this.getProducts();
     // localStorage.setItem("products", this.cart);
@@ -49,6 +51,12 @@ export class HomeComponent implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  async addBd(item: ProductsItem) {
+    this.product
+      .addBd(item)
+      .subscribe(res => console.log(res), err => console.log(err));
   }
 
   select(dados) {
