@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { MenuController, ToastController } from "@ionic/angular";
+import { MenuController } from "@ionic/angular";
 import { ProductsService } from "../../services/products.service";
-import { CartItem } from "../../models/cart-item.model";
+import { Toast } from "../../../shared/helpers/Toast/toast";
 
 @Component({
   selector: "app-menu",
@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private menu: MenuController,
     private product: ProductsService,
-    public toastController: ToastController
+    public toast: Toast
   ) {}
 
   ngOnInit() {}
@@ -58,12 +58,8 @@ export class MenuComponent implements OnInit {
 
   async removeItem(item: any) {
     this.product.decreaseQty(item);
+    this.toast.emitToast("Item removido com sucesso.", 2000);
 
-    const toast = await this.toastController.create({
-      message: "Item removido com sucesso.",
-      duration: 2000
-    });
-    toast.present();
     this.items();
   }
 
@@ -76,11 +72,7 @@ export class MenuComponent implements OnInit {
   }
 
   async add(a) {
-    const toast = await this.toastController.create({
-      message: "Compra finalizada com sucesso.",
-      duration: 2000
-    });
-    toast.present();
+    this.toast.emitToast("Compra finalizada com sucesso.", 2000);
 
     this.clear();
   }

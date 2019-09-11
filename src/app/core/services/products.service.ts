@@ -19,6 +19,7 @@ export class ProductsService {
     this.items = [];
     this.bag = [];
     this.localSto("items", this.items);
+    this.localSto("badge", this.bag);
   }
 
   async addItem(item: ProductsItem) {
