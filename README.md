@@ -16,7 +16,7 @@ clone this repository: `git clone https://github.com/MariaLisboa1/NetshoesCard.g
 
 1 - `npm install -g ionic`
 
-2 - `ionic platform add android`
+2 - `ionic cordova platform add android`
 
 3 - `ionic cordova prepare android`
 

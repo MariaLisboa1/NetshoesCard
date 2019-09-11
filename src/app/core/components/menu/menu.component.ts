@@ -19,9 +19,7 @@ export class MenuComponent implements OnInit {
     public toastController: ToastController
   ) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   openFirst() {
     this.menu.enable(true, "first");
@@ -40,22 +38,17 @@ export class MenuComponent implements OnInit {
   badge(): any[] {
     let getBadge = JSON.parse(localStorage.getItem("badge"));
 
-    if (getBadge) {
-      return getBadge.length;
-    } else {
-      getBadge = 0;
-      return getBadge;
-    }
+    if (getBadge) return getBadge.length;
+    else getBadge = 0;
+    return getBadge;
   }
 
   items() {
     let getItems = JSON.parse(localStorage.getItem("items"));
 
-    if (getItems) {
-      this.cartItems = getItems;
-    } else {
-      this.cartItems = [];
-    }
+    if (getItems) this.cartItems = getItems;
+    else this.cartItems = [];
+
     return this.cartItems;
   }
 
