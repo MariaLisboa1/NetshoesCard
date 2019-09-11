@@ -28,7 +28,7 @@ clone this repository: `git clone https://github.com/MariaLisboa1/NetshoesCard.g
 
 1 - `ionic cordova build android --prod`
 
-2 - find the apk in: `platforms/android/build/outputs/apk`
+2 - find the apk in: `platforms/android/app/build/outputs/apk/debug`
 
 ## Deployment
 

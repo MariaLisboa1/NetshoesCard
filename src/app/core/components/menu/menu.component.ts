@@ -75,7 +75,7 @@ export class MenuComponent implements OnInit {
     return this.total() / 10;
   }
 
-  async add() {
+  async add(a) {
     const toast = await this.toastController.create({
       message: "Compra finalizada com sucesso.",
       duration: 2000
