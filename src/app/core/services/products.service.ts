@@ -45,20 +45,19 @@ export class ProductsService {
       item.quantity -= 1;
       find.quantity -= 1;
       if (item.quantity === 0 && find.quantity === 0) {
-        this.removeItem(item);
+        this.removeItem(this.bag, this.items, item);
+        this.removeItem(this.items, this.items, item);
       }
     }
-    this.bag.splice(this.items.indexOf(item), 1);
 
-    
+    this.removeItem(this.bag, this.items, item);
+
     this.storageLocal.saveItem("badge", this.bag);
     this.storageLocal.saveItem("items", this.items);
   }
 
-  removeItem(item: CartItem) {
-    this.items.splice(this.items.indexOf(item), 1);
-    this.bag.splice(this.items.indexOf(item), 1);
-
+  removeItem(data, items, item: CartItem) {
+    data.splice(items.indexOf(item), 1);
     console.log(`Você removeu o item ${item.menuItem.title}`);
   }
 
