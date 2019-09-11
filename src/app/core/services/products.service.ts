@@ -4,6 +4,7 @@ import { ProductsItem } from "../models/products-item.model";
 import { NETSHOES_API } from "../../app.api";
 import { CartItem } from "../models/cart-item.model";
 import { BagItem } from "../models/bag-item.model";
+import { StorageLocal } from "src/app/shared/helpers/StorageLocal/storageLocal";
 
 @Injectable({
   providedIn: "root"
@@ -13,13 +14,13 @@ export class ProductsService {
   items: CartItem[] = [];
   bag: BagItem[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public storageLocal: StorageLocal) {}
 
   clear() {
     this.items = [];
     this.bag = [];
-    this.localSto("items", this.items);
-    this.localSto("badge", this.bag);
+    this.storageLocal.saveItem("items", this.items);
+    this.storageLocal.saveItem("badge", this.bag);
   }
 
   async addItem(item: ProductsItem) {
@@ -31,10 +32,9 @@ export class ProductsService {
     }
     console.log(`Você adicionou o item ${item.title}`);
 
-    this.localSto("items", this.items);
-
+    this.storageLocal.saveItem("items", this.items);
     this.bag.push(new BagItem(item));
-    this.localSto("badge", this.bag);
+    this.storageLocal.saveItem("badge", this.bag);
   }
 
   increaseQty(item: CartItem) {
@@ -53,8 +53,9 @@ export class ProductsService {
       }
     }
     this.bag.splice(this.items.indexOf(item), 1);
-    this.localSto("badge", this.bag);
-    this.localSto("items", this.items);
+
+    this.storageLocal.saveItem("badge", this.bag);
+    this.storageLocal.saveItem("items", this.items);
   }
 
   removeItem(item: CartItem) {
@@ -74,9 +75,5 @@ export class ProductsService {
 
   products() {
     return this.http.get(`${NETSHOES_API}/products`);
-  }
-
-  localSto(name, item) {
-    return localStorage.setItem(name, JSON.stringify(item));
   }
 }

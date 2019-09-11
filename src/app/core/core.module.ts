@@ -29,6 +29,7 @@ import { SharedModule } from "../shared/shared.module";
     HomeComponent,
     HomeItemsComponent
   ],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, IonicModule]
+  exports: [CommonModule, FormsModule, ReactiveFormsModule, IonicModule],
+  providers: []
 })
 export class CoreModule {}

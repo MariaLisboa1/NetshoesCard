@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private product: ProductsService,
     public alertController: AlertController,
-    public toast: Toast
+    private toast: Toast
   ) {}
 
   ngOnInit() {

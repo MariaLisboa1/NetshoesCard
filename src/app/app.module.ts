@@ -9,6 +9,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
+import { StorageLocal } from "./shared/helpers/StorageLocal/storageLocal";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { HttpClientModule } from "@angular/common/http";
   ],
   exports: [],
   providers: [
+    StorageLocal,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

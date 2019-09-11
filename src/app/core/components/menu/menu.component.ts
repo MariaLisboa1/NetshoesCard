@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MenuController } from "@ionic/angular";
 import { ProductsService } from "../../services/products.service";
 import { Toast } from "../../../shared/helpers/Toast/toast";
+import { StorageLocal } from "../../../shared/helpers/StorageLocal/storageLocal";
 
 @Component({
   selector: "app-menu",
@@ -16,7 +17,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private menu: MenuController,
     private product: ProductsService,
-    public toast: Toast
+    private toast: Toast,
+    public storageLocal: StorageLocal
   ) {}
 
   ngOnInit() {}
@@ -36,7 +38,8 @@ export class MenuComponent implements OnInit {
   }
 
   badge(): any[] {
-    let getBadge = JSON.parse(localStorage.getItem("badge"));
+    // let getBadge = JSON.parse(localStorage.getItem("badge"));
+    let getBadge = this.storageLocal.getItem("badge");
 
     if (getBadge) return getBadge.length;
     else getBadge = 0;
@@ -44,7 +47,8 @@ export class MenuComponent implements OnInit {
   }
 
   items() {
-    let getItems = JSON.parse(localStorage.getItem("items"));
+    // let getItems = JSON.parse(localStorage.getItem("items"));
+    let getItems = this.storageLocal.getItem("items");
 
     if (getItems) this.cartItems = getItems;
     else this.cartItems = [];
