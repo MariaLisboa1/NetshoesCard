@@ -58,7 +58,6 @@ export class ProductsService {
 
   removeItem(data, items, item: CartItem) {
     data.splice(items.indexOf(item), 1);
-    console.log(`Você removeu o item ${item.menuItem.title}`);
   }
 
   total(): number {
