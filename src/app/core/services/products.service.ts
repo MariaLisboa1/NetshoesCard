@@ -24,36 +24,33 @@ export class ProductsService {
   }
 
   async addItem(item: ProductsItem) {
-    let foundItem = this.items.find(mItem => mItem.menuItem.id === item.id);
-    if (foundItem) {
-      this.increaseQty(foundItem);
-    } else {
-      this.items.push(new CartItem(item));
-    }
-    console.log(`Você adicionou o item ${item.title}`);
-
+    const foundItem = this.items.find(({ menuItem: { id } }) => id === item.id);
+    const cartItem = new CartItem(item);
+    const bagItem = new BagItem(item);
+    foundItem ? this.increaseQty(foundItem) : this.items.push(cartItem);
+    this.bag.push(bagItem);
     this.storageLocal.saveItem("items", this.items);
-    this.bag.push(new BagItem(item));
     this.storageLocal.saveItem("badge", this.bag);
   }
 
   increaseQty(item: CartItem) {
-    item.quantity = item.quantity + 1;
+    item.quantity += 1;
   }
 
   decreaseQty(item: CartItem) {
-    let find = this.items.filter(a => a.menuItem.id === item.menuItem.id);
-    console.log(find);
-
-    if (find.length > 0) {
-      item.quantity = item.quantity - 1;
-      find[0].quantity = find[0].quantity - 1;
-      if (item.quantity === 0 && find[0].quantity === 0) {
+    let [find] = this.items.filter(
+      ({ menuItem: { id } }) => id === item.menuItem.id
+    );
+    if (find) {
+      item.quantity -= 1;
+      find.quantity -= 1;
+      if (item.quantity === 0 && find.quantity === 0) {
         this.removeItem(item);
       }
     }
     this.bag.splice(this.items.indexOf(item), 1);
 
+    
     this.storageLocal.saveItem("badge", this.bag);
     this.storageLocal.saveItem("items", this.items);
   }
@@ -66,10 +63,9 @@ export class ProductsService {
   }
 
   total(): number {
-    let getTotal = JSON.parse(localStorage.getItem("items"));
-
+    let getTotal = this.storageLocal.getItem("items");
     return getTotal
-      .map(item => item.menuItem.price * item.quantity)
+      .map(({ menuItem }) => menuItem.price * menuItem.quantity)
       .reduce((prev, value) => prev + value, 0);
   }
 

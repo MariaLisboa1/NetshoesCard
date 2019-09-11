@@ -38,22 +38,15 @@ export class MenuComponent implements OnInit {
   }
 
   badge(): any[] {
-    // let getBadge = JSON.parse(localStorage.getItem("badge"));
     let getBadge = this.storageLocal.getItem("badge");
-
-    if (getBadge) return getBadge.length;
-    else getBadge = 0;
-    return getBadge;
+    return getBadge ? getBadge.length : 0;
   }
 
   items() {
-    // let getItems = JSON.parse(localStorage.getItem("items"));
     let getItems = this.storageLocal.getItem("items");
+    const carts = getItems ? (this.cartItems = getItems) : [];
 
-    if (getItems) this.cartItems = getItems;
-    else this.cartItems = [];
-
-    return this.cartItems;
+    return carts;
   }
 
   clear() {
